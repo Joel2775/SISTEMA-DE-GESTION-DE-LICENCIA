@@ -2,19 +2,29 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class gestorUsuarios extends JFrame{
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JPanel gestorUsu;
+    private JPanel gestorUsuarios;
+    private JButton crearButton;
+    private JButton actualizarButton;
+    private JButton eliminarButton;
+    private JButton mostrarButton;
+    private JButton generarDocumentoPDFButton;
+    private JButton salirButton;
 
     public gestorUsuarios() throws HeadlessException {
         setTitle("Gestor de Usuarios");
-        setContentPane(gestorUsu);
-        setSize(400, 300);
+        setContentPane(gestorUsuarios);
+        setSize(610, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        crearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 }

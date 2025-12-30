@@ -11,12 +11,14 @@ public class loginAdmin extends JFrame {
     private JButton aceptarButton;
     private JTextField textUsuario;
     private JTextField textPassword;
+    private JButton salirButton;
+    private JPanel botones;
     private JButton cerrrarButton;
 
     public loginAdmin() {
         setTitle("Login Administrador");
         setContentPane(loginAdmim);
-        setSize(400, 300);
+        setSize(300, 280);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         aceptarButton.addActionListener(new ActionListener() {
@@ -31,7 +33,7 @@ public class loginAdmin extends JFrame {
                 }
             }
         });
-        cerrrarButton.addActionListener(new ActionListener() {
+        salirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
