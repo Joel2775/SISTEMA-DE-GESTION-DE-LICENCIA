@@ -23,7 +23,42 @@ public class gestorUsuarios extends JFrame{
         crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Lógica para crear un usuario
+                gestorUsuariosCrear mostrar = new gestorUsuariosCrear();
+                mostrar.setVisible(true);
+                // Lógica para Crear un usuario
+            }
+        });
+
+        actualizarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gestorUsuariosActualizar mostrar = new gestorUsuariosActualizar();
+                mostrar.setVisible(true);
+                // Lógica para Actualizar un usuario
+            }
+        });
+
+        eliminarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gestorUsuariosEliminar mostrar = new gestorUsuariosEliminar();
+                mostrar.setVisible(true);
+                // Lógica para Eliminar un usuario
+            }
+        });
+
+        mostrarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gestorUsuariosMostrar mostrar = new gestorUsuariosMostrar();
+                mostrar.setVisible(true);
+                // Lógica para Mostrar un usuario
+            }
+        });
+        salirButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
             }
         });
     }
