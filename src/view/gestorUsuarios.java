@@ -23,7 +23,7 @@ public class gestorUsuarios extends JFrame{
         crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                // Lógica para crear un usuario
             }
         });
     }
