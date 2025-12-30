@@ -26,5 +26,12 @@ public class sistema extends JFrame {
             }
 
         });
+        analistaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginAnalista login = new loginAnalista();
+                login.setVisible(true);
+            }
+        });
     }
 }
