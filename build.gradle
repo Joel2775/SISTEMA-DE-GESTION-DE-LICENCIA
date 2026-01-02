@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Driver PostgreSQL (Supabase)
+    implementation 'org.postgresql:postgresql:42.7.3'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+application {
+    // Clase Main real de tu proyecto
+    mainClass = 'org.example.Main'
+}
+
+test {
+    useJUnitPlatform()
+}
