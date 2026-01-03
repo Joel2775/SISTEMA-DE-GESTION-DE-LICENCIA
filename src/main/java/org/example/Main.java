@@ -1,13 +1,13 @@
 package org.example;
 
-import org.example.view.sistema;
+import org.example.view.Sistema;
 
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new sistema().setVisible(true);
+            new Sistema().setVisible(true);
         });
     }
 }
