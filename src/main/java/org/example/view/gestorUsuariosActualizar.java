@@ -1,34 +1,185 @@
 package org.example.view;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class gestorUsuariosActualizar extends JFrame {
-    private JPanel gestorUsuariosActualizar;
+
+    private JPanel panelPrincipal;
     private JPanel panelBusqueda;
-    private JTextField txtCedula;
-    private JButton btnBuscar;
-    private JScrollPane scrollInfo;
-    private JTextArea txtInfo;
-    private JPanel panelBotones;
-    private JButton btnGuardar;
-    private JButton btnCerrar;
+    private JPanel panelInfo;
     private JPanel panelFormulario;
+    private JPanel panelBotones;
+
+    private JTextField txtCedulaBusqueda;
+    private JButton btnBuscar;
+
+    private JTextArea txtInfo;
+
+    private JTextField txtCedula;
     private JTextField txtNombres;
     private JTextField txtApellidos;
     private JTextField txtFechaNacimiento;
     private JTextField txtDireccion;
     private JTextField txtTelefono;
     private JTextField txtEmail;
-    private JComboBox cmbTipoSangre;
+    private JComboBox<String> cmbTipoSangre;
 
-    public gestorUsuariosActualizar(){
-        setTitle("Actualizar de Datos de Usuarios");
-        setContentPane(gestorUsuariosActualizar);
+    private JButton btnActualizar;
+    private JButton btnCerrar;
+
+    public gestorUsuariosActualizar() {
+
+        inicializarActualizar();
+        setTitle("Actualizar Datos de Usuarios");
+        setContentPane(panelPrincipal);
         setSize(900, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+
+        eventos();
+    }
+
+    private void inicializarActualizar() {
+        panelPrincipal = new JPanel();
+        panelPrincipal.setLayout(null);
+
+        panelBusqueda = new JPanel();
+        panelBusqueda.setLayout(null);
+        panelBusqueda.setBorder(new TitledBorder("Búsqueda"));
+        panelBusqueda.setBounds(10, 10, 860, 60);
+        panelPrincipal.add(panelBusqueda);
+
+        JLabel lblBuscar = new JLabel("Cédula:");
+        lblBuscar.setBounds(20, 25, 60, 25);
+        panelBusqueda.add(lblBuscar);
+
+        txtCedulaBusqueda = new JTextField();
+        txtCedulaBusqueda.setBounds(80, 25, 200, 25);
+        panelBusqueda.add(txtCedulaBusqueda);
+
+        btnBuscar = new JButton("Buscar");
+        btnBuscar.setBounds(300, 25, 100, 25);
+        panelBusqueda.add(btnBuscar);
+
+        panelInfo = new JPanel();
+        panelInfo.setLayout(null);
+        panelInfo.setBorder(new TitledBorder("Información del Conductor"));
+        panelInfo.setBounds(10, 80, 860, 170);
+        panelPrincipal.add(panelInfo);
+
+        txtInfo = new JTextArea();
+        txtInfo.setEditable(false);
+        JScrollPane scrollInfo = new JScrollPane(txtInfo);
+        scrollInfo.setBounds(15, 25, 830, 130);
+        panelInfo.add(scrollInfo);
+
+
+        panelFormulario = new JPanel();
+        panelFormulario.setLayout(null);
+        panelFormulario.setBorder(new TitledBorder("Datos del Conductor"));
+        panelFormulario.setBounds(10, 260, 860, 210);
+        panelPrincipal.add(panelFormulario);
+
+        JLabel lblCedula = new JLabel("Cédula:");
+        lblCedula.setBounds(20, 30, 100, 25);
+        panelFormulario.add(lblCedula);
+
+        txtCedula = new JTextField();
+        txtCedula.setBounds(120, 30, 250, 25);
+        panelFormulario.add(txtCedula);
+
+        JLabel lblNombres = new JLabel("Nombres:");
+        lblNombres.setBounds(420, 30, 100, 25);
+        panelFormulario.add(lblNombres);
+
+        txtNombres = new JTextField();
+        txtNombres.setBounds(520, 30, 300, 25);
+        panelFormulario.add(txtNombres);
+
+        JLabel lblApellidos = new JLabel("Apellidos:");
+        lblApellidos.setBounds(20, 65, 100, 25);
+        panelFormulario.add(lblApellidos);
+
+        txtApellidos = new JTextField();
+        txtApellidos.setBounds(120, 65, 250, 25);
+        panelFormulario.add(txtApellidos);
+
+        JLabel lblFecha = new JLabel("Fecha Nac (AAAA-MM-DD):");
+        lblFecha.setBounds(420, 65, 200, 25);
+        panelFormulario.add(lblFecha);
+
+        txtFechaNacimiento = new JTextField();
+        txtFechaNacimiento.setBounds(620, 65, 200, 25);
+        panelFormulario.add(txtFechaNacimiento);
+
+        JLabel lblDireccion = new JLabel("Dirección:");
+        lblDireccion.setBounds(20, 100, 100, 25);
+        panelFormulario.add(lblDireccion);
+
+        txtDireccion = new JTextField();
+        txtDireccion.setBounds(120, 100, 250, 25);
+        panelFormulario.add(txtDireccion);
+
+        JLabel lblTelefono = new JLabel("Teléfono:");
+        lblTelefono.setBounds(420, 100, 100, 25);
+        panelFormulario.add(lblTelefono);
+
+        txtTelefono = new JTextField();
+        txtTelefono.setBounds(520, 100, 300, 25);
+        panelFormulario.add(txtTelefono);
+
+        JLabel lblEmail = new JLabel("Email:");
+        lblEmail.setBounds(20, 135, 100, 25);
+        panelFormulario.add(lblEmail);
+
+        txtEmail = new JTextField();
+        txtEmail.setBounds(120, 135, 250, 25);
+        panelFormulario.add(txtEmail);
+
+        JLabel lblTipoSangre = new JLabel("Tipo Sangre:");
+        lblTipoSangre.setBounds(420, 135, 100, 25);
+        panelFormulario.add(lblTipoSangre);
+
+        cmbTipoSangre = new JComboBox<>(new String[]{"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"});
+        cmbTipoSangre.setBounds(520, 135, 150, 25);
+        panelFormulario.add(cmbTipoSangre);
+
+
+        panelBotones = new JPanel();
+        panelBotones.setLayout(null);
+        panelBotones.setBounds(10, 480, 860, 60);
+        panelPrincipal.add(panelBotones);
+
+        btnActualizar = new JButton("Actualizar");
+        btnActualizar.setBounds(250, 15, 160, 30);
+        panelBotones.add(btnActualizar);
+
+        btnCerrar = new JButton("Cerrar");
+        btnCerrar.setBounds(450, 15, 160, 30);
+        panelBotones.add(btnCerrar);
+    }
+
+
+    private void eventos() {
+
+        btnBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                txtInfo.setText("");
+            }
+        });
+
+        btnActualizar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         btnCerrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
