@@ -2,7 +2,6 @@ package org.example.view;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,7 +18,7 @@ public class gestorUsuariosActualizar extends JFrame {
 
     private JTextArea txtInfo;
 
-    private JTextField txtCedula;
+    private JTextField txtCedulaBuscar;
     private JTextField txtNombres;
     private JTextField txtApellidos;
     private JTextField txtFechaNacimiento;
@@ -30,6 +29,9 @@ public class gestorUsuariosActualizar extends JFrame {
 
     private JButton btnActualizar;
     private JButton btnCerrar;
+    private JTextField txtCedula;
+    private JTextField txtUsuario;
+    private JTextField txtContrasena;
 
     public gestorUsuariosActualizar() {
 
@@ -67,7 +69,7 @@ public class gestorUsuariosActualizar extends JFrame {
 
         panelInfo = new JPanel();
         panelInfo.setLayout(null);
-        panelInfo.setBorder(new TitledBorder("Información del Conductor"));
+        panelInfo.setBorder(new TitledBorder("Información del Usuario"));
         panelInfo.setBounds(10, 80, 860, 170);
         panelPrincipal.add(panelInfo);
 
@@ -80,73 +82,73 @@ public class gestorUsuariosActualizar extends JFrame {
 
         panelFormulario = new JPanel();
         panelFormulario.setLayout(null);
-        panelFormulario.setBorder(new TitledBorder("Datos del Conductor"));
+        panelFormulario.setBorder(new TitledBorder("Datos del Usuario"));
         panelFormulario.setBounds(10, 260, 860, 210);
         panelPrincipal.add(panelFormulario);
+
 
         JLabel lblCedula = new JLabel("Cédula:");
         lblCedula.setBounds(20, 30, 100, 25);
         panelFormulario.add(lblCedula);
+        txtCedulaBuscar = new JTextField();
+        txtCedulaBuscar.setBounds(120, 30, 250, 25);
+        panelFormulario.add(txtCedulaBuscar);
 
-        txtCedula = new JTextField();
-        txtCedula.setBounds(120, 30, 250, 25);
-        panelFormulario.add(txtCedula);
 
         JLabel lblNombres = new JLabel("Nombres:");
         lblNombres.setBounds(420, 30, 100, 25);
         panelFormulario.add(lblNombres);
-
         txtNombres = new JTextField();
         txtNombres.setBounds(520, 30, 300, 25);
         panelFormulario.add(txtNombres);
 
+
         JLabel lblApellidos = new JLabel("Apellidos:");
         lblApellidos.setBounds(20, 65, 100, 25);
         panelFormulario.add(lblApellidos);
-
         txtApellidos = new JTextField();
         txtApellidos.setBounds(120, 65, 250, 25);
         panelFormulario.add(txtApellidos);
 
-        JLabel lblFecha = new JLabel("Fecha Nac (AAAA-MM-DD):");
-        lblFecha.setBounds(420, 65, 200, 25);
-        panelFormulario.add(lblFecha);
 
-        txtFechaNacimiento = new JTextField();
-        txtFechaNacimiento.setBounds(620, 65, 200, 25);
-        panelFormulario.add(txtFechaNacimiento);
+        JLabel lblTelefono = new JLabel("Teléfono:");
+        lblTelefono.setBounds(420, 65, 200, 25);
+        panelFormulario.add(lblTelefono);
+        txtTelefono = new JTextField();
+        txtTelefono.setBounds(520, 65, 300, 25);
+        panelFormulario.add(txtTelefono);
+
 
         JLabel lblDireccion = new JLabel("Dirección:");
         lblDireccion.setBounds(20, 100, 100, 25);
         panelFormulario.add(lblDireccion);
-
         txtDireccion = new JTextField();
         txtDireccion.setBounds(120, 100, 250, 25);
         panelFormulario.add(txtDireccion);
 
-        JLabel lblTelefono = new JLabel("Teléfono:");
-        lblTelefono.setBounds(420, 100, 100, 25);
-        panelFormulario.add(lblTelefono);
 
-        txtTelefono = new JTextField();
-        txtTelefono.setBounds(520, 100, 300, 25);
-        panelFormulario.add(txtTelefono);
+        JLabel lblUsuario = new JLabel("Usuario:");
+        lblUsuario.setBounds(420, 100, 100, 25);
+        panelFormulario.add(lblUsuario);
+        txtUsuario = new JTextField();
+        txtUsuario.setBounds(520, 100, 300, 25);
+        panelFormulario.add(txtUsuario);
+
 
         JLabel lblEmail = new JLabel("Email:");
         lblEmail.setBounds(20, 135, 100, 25);
         panelFormulario.add(lblEmail);
-
         txtEmail = new JTextField();
         txtEmail.setBounds(120, 135, 250, 25);
         panelFormulario.add(txtEmail);
 
-        JLabel lblTipoSangre = new JLabel("Tipo Sangre:");
-        lblTipoSangre.setBounds(420, 135, 100, 25);
-        panelFormulario.add(lblTipoSangre);
 
-        cmbTipoSangre = new JComboBox<>(new String[]{"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"});
-        cmbTipoSangre.setBounds(520, 135, 150, 25);
-        panelFormulario.add(cmbTipoSangre);
+        JLabel lblContrasena = new JLabel("Contraseña:");
+        lblContrasena.setBounds(420, 135, 100, 25);
+        panelFormulario.add(lblContrasena);
+        txtContrasena = new JTextField();
+        txtContrasena.setBounds(520, 135, 300, 25);
+        panelFormulario.add(txtContrasena);
 
 
         panelBotones = new JPanel();
