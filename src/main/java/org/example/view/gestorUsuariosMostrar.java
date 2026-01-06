@@ -18,7 +18,7 @@ public class gestorUsuariosMostrar extends JFrame {
     private JButton btnBuscar;
     private JButton btnActualizar;
 
-    private JTable tableLicencias;
+    private JTable tableUsuarios;
     private JScrollPane scrollTabla;
 
     private JButton btnGenerarPDF;
@@ -48,13 +48,9 @@ public class gestorUsuariosMostrar extends JFrame {
         panelBusqueda.setBounds(10, 10, 860, 70);
         panelPrincipal.add(panelBusqueda);
 
-        JLabel lblBuscarPor = new JLabel("Buscar por:");
+        JLabel lblBuscarPor = new JLabel("Cedula:");
         lblBuscarPor.setBounds(20, 30, 80, 25);
         panelBusqueda.add(lblBuscarPor);
-
-        cmbTipoBusqueda = new JComboBox<>(new String[]{"Número de Licencia", "Cédula", "Todas las Licencias"});
-        cmbTipoBusqueda.setBounds(100, 30, 180, 25);
-        panelBusqueda.add(cmbTipoBusqueda);
 
         txtBuscar = new JTextField();
         txtBuscar.setBounds(290, 30, 250, 25);
@@ -71,16 +67,16 @@ public class gestorUsuariosMostrar extends JFrame {
 
         panelTabla = new JPanel();
         panelTabla.setLayout(null);
-        panelTabla.setBorder(new TitledBorder("Licencias Registradas"));
+        panelTabla.setBorder(new TitledBorder("Usuarios Registrados"));
         panelTabla.setBounds(10, 90, 860, 380);
         panelPrincipal.add(panelTabla);
 
-        tableLicencias = new JTable();
-        tableLicencias.setModel(new DefaultTableModel(new Object[][]{},
-                new String[]{"ID", "Número", "Conductor", "Cédula", "Tipo", "Emisión", "Vencimiento", "Estado"}
+        tableUsuarios = new JTable();
+        tableUsuarios.setModel(new DefaultTableModel(new Object[][]{},
+                new String[]{"Cédula", "Nombres", "Apellidos", "Teléfono", "Dirección", "Email", "Usuario", "Contraseña"}
         ));
 
-        scrollTabla = new JScrollPane(tableLicencias);
+        scrollTabla = new JScrollPane(tableUsuarios);
         scrollTabla.setBounds(15, 25, 830, 340);
         panelTabla.add(scrollTabla);
 
