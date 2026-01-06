@@ -59,7 +59,7 @@ public class gestorUsuariosEliminar extends JFrame {
 
         panelInfo = new JPanel();
         panelInfo.setLayout(null);
-        panelInfo.setBorder(new TitledBorder("Información del Conductor"));
+        panelInfo.setBorder(new TitledBorder("Información del Usuario"));
         panelInfo.setBounds(10, 90, 860, 350);
         panelPrincipal.add(panelInfo);
 
