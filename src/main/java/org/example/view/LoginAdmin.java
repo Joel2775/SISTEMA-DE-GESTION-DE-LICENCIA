@@ -1,5 +1,6 @@
 package org.example.view;
 
+import org.example.dao.AdminDAO;
 import org.example.model.entities.Admin;
 
 import javax.swing.*;
@@ -12,13 +13,16 @@ public class LoginAdmin extends JFrame {
     private JPanel LoginAdmin;
     private JButton btnAceptar;
     private JTextField textUsuario;
-    private JTextField textContra;
+    private JPasswordField passwordField;
     private JButton btnSalir;
     private JLabel lblContra;
     private JLabel lblUsuario;
     private JLabel lblTitulo;
     private JSeparator separator;
     private JSeparator separator1;
+
+    private int intentosFallidos = 0;
+    private final int MAX_INTENTOS = 3;
 
     public LoginAdmin() throws HeadlessException {
 
@@ -33,12 +37,35 @@ public class LoginAdmin extends JFrame {
         btnAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Admin admin = new Admin();
-                String usuario = textUsuario.getText();
-                String password = textContra.getText();
-                if (usuario.equals(admin.getUsuario()) && password.equals(admin.getContrasena())) {
-                    GestorUsuarios gestor = new GestorUsuarios();
-                    gestor.setVisible(true);
+
+                String usuario = textUsuario.getText().trim();
+                String password = new String(passwordField.getPassword());
+
+                AdminDAO admin1 = new AdminDAO();
+
+                if (admin1.validarLogin(usuario, password)) {
+                    JOptionPane.showMessageDialog(LoginAdmin.this,"Bienvenido Administrador");
+
+                    GestorUsuarios gestorUsuarios = new GestorUsuarios();
+                    gestorUsuarios.setVisible(true);
+
+                    limpiar();
+                } else {
+                    intentosFallidos++;
+
+                    if (intentosFallidos >= MAX_INTENTOS) {
+                        bloquearLogin();
+                        limpiar();
+                    } else {
+                        JOptionPane.showMessageDialog(
+                                LoginAdmin.this,
+                                "Credenciales incorrectas.\nIntentos restantes: "
+                                        + (MAX_INTENTOS - intentosFallidos),
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+                        limpiar();
+                    }
                 }
             }
         });
@@ -77,11 +104,9 @@ public class LoginAdmin extends JFrame {
         LoginAdmin.add(textUsuario);
         textUsuario.setColumns(10);
 
-        textContra = new JTextField();
-        textContra.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        textContra.setColumns(10);
-        textContra.setBounds(154, 118, 126, 18);
-        LoginAdmin.add(textContra);
+        passwordField = new JPasswordField();
+        passwordField.setBounds(154, 120, 126, 18);
+        LoginAdmin.add(passwordField);
 
         lblContra = new JLabel("Contraseña:");
         lblContra.setHorizontalAlignment(SwingConstants.LEFT);
@@ -102,5 +127,25 @@ public class LoginAdmin extends JFrame {
         LoginAdmin.add(btnSalir);
 
     }
+
+    private void bloquearLogin() {
+
+        textUsuario.setEnabled(false);
+        passwordField.setEnabled(false);
+        btnAceptar.setEnabled(false);
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Has superado el número máximo de intentos.\nLogin bloqueado.",
+                "Acceso bloqueado",
+                JOptionPane.WARNING_MESSAGE
+        );
+    }
+
+    public void limpiar() {
+        textUsuario.setText("");
+        passwordField.setText("");
+    }
+
 
 }

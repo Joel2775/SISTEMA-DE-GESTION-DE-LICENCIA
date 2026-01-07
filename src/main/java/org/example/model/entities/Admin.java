@@ -1,9 +1,10 @@
 package org.example.model.entities;
 
 public class Admin {
-
-    private final String usuario = "admin";
-    private final String contrasena = "admin123";
+    private Long id;
+    private String usuario;
+    private String contrasena;
+    private boolean estado;
 
     public String getUsuario() {
         return usuario;
@@ -12,4 +13,5 @@ public class Admin {
     public String getContrasena() {
         return contrasena;
     }
+
 }

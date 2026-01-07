@@ -1,5 +1,6 @@
 package org.example.view;
 
+import org.example.dao.AdminDAO;
 import org.example.model.entities.Admin;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ public class LoginAnalista extends JFrame{
     private JTextField textUsuario;
     private JButton btnSalir;
     private JButton btnAceptar;
-    private JTextField textContra;
+    private JPasswordField passwordField;
     private JPanel LoginAnalista;
     private JLabel lblContra;
     private JLabel lblUsuario;
@@ -30,19 +31,15 @@ public class LoginAnalista extends JFrame{
         btnAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Admin admin = new Admin();
-                String usuario = textUsuario.getText();
-                String password = textContra.getText();
-                if (usuario.equals(admin.getUsuario()) && password.equals(admin.getContrasena())) {
-                    //logica para conectar al gestor de licencias
-                }
+
+                //logica para la ventana de analista
             }
         });
 
         btnSalir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                dispose();
             }
         });
     }
@@ -74,11 +71,9 @@ public class LoginAnalista extends JFrame{
         LoginAnalista.add(textUsuario);
         textUsuario.setColumns(10);
 
-        textContra = new JTextField();
-        textContra.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        textContra.setColumns(10);
-        textContra.setBounds(154, 118, 126, 18);
-        LoginAnalista.add(textContra);
+        passwordField = new JPasswordField();
+        passwordField.setBounds(154, 120, 126, 18);
+        LoginAnalista.add(passwordField);
 
         lblContra = new JLabel("Contraseña:");
         lblContra.setHorizontalAlignment(SwingConstants.LEFT);
