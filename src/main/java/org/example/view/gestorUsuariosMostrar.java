@@ -28,7 +28,7 @@ public class gestorUsuariosMostrar extends JFrame {
 
         inicializarMostrar();
 
-        setTitle("Mostrar Licencias Registradas");
+        setTitle("Mostrar Usuario Registrados");
         setContentPane(panelPrincipal);
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -73,7 +73,7 @@ public class gestorUsuariosMostrar extends JFrame {
 
         tableUsuarios = new JTable();
         tableUsuarios.setModel(new DefaultTableModel(new Object[][]{},
-                new String[]{"Cédula", "Nombres", "Apellidos", "Teléfono", "Dirección", "Email", "Usuario", "Contraseña"}
+                new String[]{"Cédula", "Nombres", "Apellidos", "Usuario", "Contraseña", "Estado"}
         ));
 
         scrollTabla = new JScrollPane(tableUsuarios);
