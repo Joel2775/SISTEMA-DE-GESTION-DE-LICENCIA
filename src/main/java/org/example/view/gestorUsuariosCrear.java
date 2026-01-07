@@ -11,11 +11,6 @@ public class gestorUsuariosCrear extends JFrame {
     private JTextField txtCedula;
     private JTextField txtNombres;
     private JTextField txtApellidos;
-    private JTextField txtFechaNacimiento;
-    private JTextField txtDireccion;
-    private JTextField txtTelefono;
-    private JTextField txtEmail;
-    private JComboBox<String> cmbTipoSangre;
     private JTable tablaUsuarios;
     private JScrollPane scrollTabla;
     private JButton btnGuardar;
@@ -24,6 +19,7 @@ public class gestorUsuariosCrear extends JFrame {
     private JButton btnCerrar;
     private JTextField txtUsuario;
     private JTextField txtContrasena;
+    private JComboBox cmbEstado;
 
     public gestorUsuariosCrear() {
         inicializarFormulario();
@@ -69,46 +65,33 @@ public class gestorUsuariosCrear extends JFrame {
         panelFormulario.add(txtApellidos);
 
 
-        JLabel lblTelefono = new JLabel("Teléfono:");
-        lblTelefono.setBounds(420, 65, 200, 25);
-        panelFormulario.add(lblTelefono);
-        txtTelefono = new JTextField();
-        txtTelefono .setBounds(520, 65, 300, 25);
-        panelFormulario.add(txtTelefono);
-
-
-        JLabel lblDireccion = new JLabel("Dirección:");
-        lblDireccion.setBounds(20, 100, 100, 25);
-        panelFormulario.add(lblDireccion);
-        txtDireccion = new JTextField();
-        txtDireccion.setBounds(120, 100, 250, 25);
-        panelFormulario.add(txtDireccion);
-
-
         JLabel lblUsuario= new JLabel("Usuario:");
-        lblUsuario.setBounds(420, 100, 100, 25);
+        lblUsuario.setBounds(420, 65, 200, 25);
         panelFormulario.add(lblUsuario);
         txtUsuario = new JTextField();
-        txtUsuario.setBounds(520, 100, 300, 25);
+        txtUsuario .setBounds(520, 65, 300, 25);
         panelFormulario.add(txtUsuario);
 
-        JLabel lblEmail = new JLabel("Email:");
-        lblEmail.setBounds(20, 135, 100, 25);
-        panelFormulario.add(lblEmail);
-        txtEmail = new JTextField();
-        txtEmail.setBounds(120, 135, 250, 25);
-        panelFormulario.add(txtEmail);
+
+        JLabel lblEstado = new JLabel("Estado:");
+        lblEstado.setBounds(20, 100, 100, 25);
+        panelFormulario.add(lblEstado);
+        cmbEstado = new JComboBox<>(new String[]{"Activar", "Desactivar"});;
+        cmbEstado.setBounds(120, 100, 250, 25);
+        panelFormulario.add(cmbEstado);
+
 
         JLabel lblContrasena = new JLabel("Contraseña:");
-        lblContrasena.setBounds(420, 135, 100, 25);
+        lblContrasena.setBounds(420, 100, 100, 25);
         panelFormulario.add(lblContrasena);
         txtContrasena = new JTextField();
-        txtContrasena.setBounds(520, 135, 300, 25);
+        txtContrasena.setBounds(520, 100, 300, 25);
         panelFormulario.add(txtContrasena);
+
 
         tablaUsuarios = new JTable();
         tablaUsuarios.setModel(new DefaultTableModel(new Object[][]{},
-                new String[]{"Cédula", "Nombres", "Apellidos", "Teléfono", "Dirección", "Usuario", "Email", "Contraseña"}
+                new String[]{"Cédula", "Nombres", "Apellidos", "Usuario", "Contraseña", "Estado"}
         ));
 
         scrollTabla = new JScrollPane(tablaUsuarios);
