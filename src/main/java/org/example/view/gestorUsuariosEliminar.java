@@ -25,7 +25,7 @@ public class gestorUsuariosEliminar extends JFrame {
 
         inicializarEliminar();
 
-        setTitle("Eliminación de Datos de Usuarios");
+        setTitle("Eliminar Usuarios");
         setContentPane(panelPrincipal);
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
