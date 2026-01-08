@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b91a280-9d1c-4f82-ab6d-5643ac4dfa1f" name="Changes" comment="implementacion del DB y funcionamiento del login con DB" />
+    <list default="true" id="2b91a280-9d1c-4f82-ab6d-5643ac4dfa1f" name="Changes" comment="funcion de la ventana GestionUsuariosCrear" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,11 +58,13 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/JOEL ADRIAN/Downloads/SISTEMA-DE-GESTION-DE-LICENCIA/src/main/java/org/example/view"
+    "last_opened_file_path": "C:/Users/JOEL ADRIAN/Documents/SISTEMA-DE-GESTION-DE-LICENCIA/src/main/java/org/example"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\JOEL ADRIAN\Documents\SISTEMA-DE-GESTION-DE-LICENCIA\src\main\java\org\example" />
+      <recent name="C:\Users\JOEL ADRIAN\Documents\SISTEMA-DE-GESTION-DE-LICENCIA\src\main\java\org\example\model" />
       <recent name="C:\Users\JOEL ADRIAN\Downloads\SISTEMA-DE-GESTION-DE-LICENCIA\src\main\java\org\example\view" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -112,12 +114,21 @@
       <option name="project" value="LOCAL" />
       <updated>1767759622951</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="funcion de la ventana GestionUsuariosCrear">
+      <option name="closed" value="true" />
+      <created>1767843053301</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1767843053301</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="implementacion del DB y funcionamiento del login con DB" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementacion del DB y funcionamiento del login con DB" />
+    <MESSAGE value="funcion de la ventana GestionUsuariosCrear" />
+    <option name="LAST_COMMIT_MESSAGE" value="funcion de la ventana GestionUsuariosCrear" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

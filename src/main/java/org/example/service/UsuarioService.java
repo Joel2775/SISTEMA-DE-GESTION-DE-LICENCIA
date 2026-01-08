@@ -16,7 +16,7 @@ import java.util.List;
  * @author Sistema Licencias Ecuador
  * @version 1.0
  */
-public class LicenciaService {
+public class UsuarioService {
 
     // DAOs necesarios (Inyección de dependencias manual)
     private final UsuarioDAO usuarioDAO;
@@ -24,7 +24,7 @@ public class LicenciaService {
     /**
      * Constructor que inicializa los DAOs
      */
-    public LicenciaService() {
+    public UsuarioService() {
         this.usuarioDAO = new UsuarioDAO();
     }
 

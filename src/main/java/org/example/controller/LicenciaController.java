@@ -3,7 +3,7 @@ package org.example.controller;
 
 import org.example.model.entities.Usuario;
 import org.example.model.exceptions.LicenciaException;
-import org.example.service.LicenciaService;
+import org.example.service.UsuarioService;
 
 import javax.swing.*;
 import java.util.List;
@@ -19,13 +19,13 @@ import java.util.List;
 public class LicenciaController {
 
     // Servicio de negocio (capa de modelo)
-    private final LicenciaService licenciaService;
+    private final UsuarioService licenciaService;
 
     /**
      * Constructor que inicializa el servicio
      */
     public LicenciaController() {
-        this.licenciaService = new LicenciaService();
+        this.licenciaService = new UsuarioService();
     }
 
     /**
