@@ -1,10 +1,21 @@
 package org.example.view;
 
+import org.example.controller.LicenciaController;
+import org.example.model.entities.Usuario;
+import org.example.model.exceptions.LicenciaException;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 public class gestorUsuariosCrear extends JFrame {
+    private final LicenciaController controller;
+    private DefaultTableModel modeloTabla;
+    private Usuario usuarioSeleccionado;
+
     private JPanel panelPrincipal;
     private JPanel panelFormulario;
     private JPanel panelBotones;
@@ -19,17 +30,129 @@ public class gestorUsuariosCrear extends JFrame {
     private JButton btnCerrar;
     private JTextField txtUsuario;
     private JTextField txtContrasena;
-    private JComboBox cmbEstado;
+    private JComboBox<String> cmbEstado;
 
-    public gestorUsuariosCrear() {
+
+    public gestorUsuariosCrear(LicenciaController controller) {
+        this.controller = controller;
         inicializarFormulario();
         setTitle("Creación de Datos de Usuarios");
         setContentPane(panelPrincipal);
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        btnCerrar.addActionListener(e -> dispose());
+
+        inicializarBotonoes();
+        inicializarTabla();
+        cargarUsuarios();
     }
+
+    /**
+     * Inicializa la tabla de usuarios
+     */
+    private void inicializarTabla() {
+        String[] columnas = {"ID", "Cédula", "Nombres", "Apellidos", "Usuario", "Clave", "Estado"};
+        modeloTabla = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        tablaUsuarios.setModel(modeloTabla);
+        tablaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
+
+    /**
+     * Guarda o actualiza un usuario
+     */
+    private void guardarUsuario() {
+        try {
+            // Validar campos obligatorios
+            if (txtCedula.getText().trim().isEmpty() ||
+                    txtNombres.getText().trim().isEmpty() ||
+                    txtApellidos.getText().trim().isEmpty()||
+                    txtUsuario.getText().trim().isEmpty() ||
+                    txtContrasena.getText().trim().isEmpty()){
+                controller.mostrarError("Todos los campos son obligatorios");
+                return;
+            }
+
+            // Crear o actualizar usuario
+            Usuario usuario;
+            if (usuarioSeleccionado != null) {
+                usuario = usuarioSeleccionado;
+            } else {
+                usuario = new Usuario();
+            }
+
+            // Establecer datos
+            usuario.setCedula(txtCedula.getText().trim());
+            usuario.setNombres(txtNombres.getText().trim());
+            usuario.setApellidos(txtApellidos.getText().trim());
+            usuario.setUsuario(txtUsuario.getText().trim());
+            usuario.setClave(txtContrasena.getText().trim());
+
+            String tipoEstado = (String) cmbEstado.getSelectedItem();
+            if (tipoEstado.equals("Activar")) {
+                usuario.setEstado(true);
+            } else {
+                usuario.setEstado(false);
+            }
+
+            // Guardar
+            Long id = controller.registrarUsuario(usuario);
+
+            if (usuarioSeleccionado != null) {
+                controller.mostrarExito("Usuario actualizado exitosamente");
+            } else {
+                controller.mostrarExito("Usuario registrado exitosamente con ID: " + id);
+            }
+
+            limpiarFormulario();
+            cargarUsuarios();
+
+        } catch (LicenciaException ex) {
+            controller.mostrarError("Error al guardar usuario: " + ex.getMessage());
+        } catch (Exception ex) {
+            controller.mostrarError("Error: " + ex.getMessage());
+        }
+    }
+
+    /**
+     * Carga los usuarios en la tabla
+     */
+    private void cargarUsuarios() {
+        try {
+            List<Usuario> usuarios = controller.obtenerTodosUsuarios();
+            modeloTabla.setRowCount(0);
+
+            for (Usuario usuario : usuarios) {
+                Object[] fila = {
+                        usuario.getId(),
+                        usuario.getCedula(),
+                        usuario.getNombres(),
+                        usuario.getApellidos(),
+                        usuario.getUsuario(),
+                        usuario.getClave(),
+                        usuario.isEstado() ? "ACTIVO": "INACTIVO",
+                };
+                modeloTabla.addRow(fila);
+            }
+        } catch (LicenciaException ex) {
+            controller.mostrarError("Error al cargar usuarios: " + ex.getMessage());
+        }
+    }
+
+    public void limpiarFormulario(){
+        txtCedula.setText("");
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        txtUsuario.setText("");
+        txtContrasena.setText("");
+        cmbEstado.setSelectedIndex(0);
+        usuarioSeleccionado = null;
+    }
+
 
     private void inicializarFormulario() {
         panelPrincipal = new JPanel();
@@ -88,11 +211,7 @@ public class gestorUsuariosCrear extends JFrame {
         txtContrasena.setBounds(520, 100, 300, 25);
         panelFormulario.add(txtContrasena);
 
-
         tablaUsuarios = new JTable();
-        tablaUsuarios.setModel(new DefaultTableModel(new Object[][]{},
-                new String[]{"Cédula", "Nombres", "Apellidos", "Usuario", "Contraseña", "Estado"}
-        ));
 
         scrollTabla = new JScrollPane(tablaUsuarios);
         scrollTabla.setBorder(new TitledBorder("Usuarios Registrados"));
@@ -105,7 +224,7 @@ public class gestorUsuariosCrear extends JFrame {
         panelBotones.setBounds(10, 470, 860, 60);
         panelPrincipal.add(panelBotones);
 
-        btnGuardar = new JButton("GUARDAR CONDUCTOR");
+        btnGuardar = new JButton("GUARDAR USUARIO");
         btnGuardar.setBounds(50, 15, 180, 30);
         panelBotones.add(btnGuardar);
 
@@ -120,5 +239,33 @@ public class gestorUsuariosCrear extends JFrame {
         btnCerrar = new JButton("CERRAR");
         btnCerrar.setBounds(600, 15, 120, 30);
         panelBotones.add(btnCerrar);
+    }
+
+    private void inicializarBotonoes(){
+
+        btnGuardar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                guardarUsuario();
+            }
+        });
+        btnLimpiar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limpiarFormulario();
+            }
+        });
+        btnActualizar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cargarUsuarios();
+            }
+        });
+        btnCerrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
     }
 }
