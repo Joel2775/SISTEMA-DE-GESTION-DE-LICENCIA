@@ -4,7 +4,56 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b91a280-9d1c-4f82-ab6d-5643ac4dfa1f" name="Changes" comment="funcion de la ventana GestionUsuariosCrear" />
+    <list default="true" id="2b91a280-9d1c-4f82-ab6d-5643ac4dfa1f" name="Changes" comment="update services">
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0.0/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.0.0/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.0.0/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.0.0/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.0.0/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/9.0.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/9.0.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/controller/UsuarioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/dao/AdminDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/dao/AdminDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/dao/IAdminService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/dao/UsuarioDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/dao/UsuarioDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/model/entities/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/org/example/model/entities/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/Sistema$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuarios$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuarios$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuarios$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuarios$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuarios$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuarios.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosActualizar$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosActualizar$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosActualizar$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosActualizar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosCrear.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosEliminar$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosEliminar$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosEliminar$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosEliminar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosMostrar$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosMostrar$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosMostrar$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosMostrar$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/gestorUsuariosMostrar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/loginAdmin$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/loginAdmin$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/loginAdmin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/loginAnalista$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/loginAnalista$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/loginAnalista.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/sistema$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/sistema$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/org/example/view/sistema.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/LicenciaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/GestorUsuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/GestorUsuarios.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/view/gestorUsuariosCrear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/view/gestorUsuariosCrear.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -122,13 +171,22 @@
       <option name="project" value="LOCAL" />
       <updated>1767843053301</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update services">
+      <option name="closed" value="true" />
+      <created>1767843213504</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1767843213504</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="implementacion del DB y funcionamiento del login con DB" />
     <MESSAGE value="funcion de la ventana GestionUsuariosCrear" />
-    <option name="LAST_COMMIT_MESSAGE" value="funcion de la ventana GestionUsuariosCrear" />
+    <MESSAGE value="update services" />
+    <option name="LAST_COMMIT_MESSAGE" value="update services" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

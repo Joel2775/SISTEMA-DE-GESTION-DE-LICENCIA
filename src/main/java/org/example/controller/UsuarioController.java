@@ -16,7 +16,7 @@ import java.util.List;
  * @author Sistema Licencias Ecuador
  * @version 1.0
  */
-public class LicenciaController {
+public class UsuarioController {
 
     // Servicio de negocio (capa de modelo)
     private final UsuarioService licenciaService;
@@ -24,7 +24,7 @@ public class LicenciaController {
     /**
      * Constructor que inicializa el servicio
      */
-    public LicenciaController() {
+    public UsuarioController() {
         this.licenciaService = new UsuarioService();
     }
 

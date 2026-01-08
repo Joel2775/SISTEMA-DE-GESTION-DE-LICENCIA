@@ -1,6 +1,6 @@
 package org.example.view;
 
-import org.example.controller.LicenciaController;
+import org.example.controller.UsuarioController;
 import org.example.model.entities.Usuario;
 import org.example.model.exceptions.LicenciaException;
 
@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class gestorUsuariosCrear extends JFrame {
-    private final LicenciaController controller;
+    private final UsuarioController controller;
     private DefaultTableModel modeloTabla;
     private Usuario usuarioSeleccionado;
 
@@ -33,7 +33,7 @@ public class gestorUsuariosCrear extends JFrame {
     private JComboBox<String> cmbEstado;
 
 
-    public gestorUsuariosCrear(LicenciaController controller) {
+    public gestorUsuariosCrear(UsuarioController controller) {
         this.controller = controller;
         inicializarFormulario();
         setTitle("Creación de Datos de Usuarios");

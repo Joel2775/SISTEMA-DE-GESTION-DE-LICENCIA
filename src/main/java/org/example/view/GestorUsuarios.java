@@ -1,5 +1,8 @@
 package org.example.view;
 
+import org.example.controller.UsuarioController;
+
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -7,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GestorUsuarios extends JFrame{
+
+    private final UsuarioController controller;
+
     private JPanel gestorUsuarios;
     private JButton btnCrear;
     private JButton btnActualizar;
@@ -18,6 +24,8 @@ public class GestorUsuarios extends JFrame{
 
     public GestorUsuarios() throws HeadlessException {
 
+        this.controller = new UsuarioController();
+
         inicializarGestorUsuarios();
 
         setTitle("Gestor de Usuarios");
@@ -28,7 +36,7 @@ public class GestorUsuarios extends JFrame{
         btnCrear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gestorUsuariosCrear mostrar = new gestorUsuariosCrear();
+                gestorUsuariosCrear mostrar = new gestorUsuariosCrear(controller);
                 mostrar.setVisible(true);
                 // Lógica para Crear un usuario
             }
