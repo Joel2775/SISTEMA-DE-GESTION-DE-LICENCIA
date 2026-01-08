@@ -1,28 +1,30 @@
 package org.example.dao;
 
 import org.example.config.DatabaseConfig;
+import org.example.model.interfaces.IAdminService;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 public class AdminDAO implements IAdminService {
 
     @Override
     public boolean validarLogin(String usuario, String clave) {
 
-        String sql = "SELECT 1 FROM public.admins WHERE usuario = ? AND clave = ?";
+        String sql = "SELECT 1 FROM public.admins WHERE usuario = ? AND clave = ? AND estado = true";
 
-        try (
-                Connection conn = DatabaseConfig.getInstance().obtenerConexion();
-                PreparedStatement ps = conn.prepareStatement(sql)
-        ) {
-            ps.setString(1, usuario);
-            ps.setString(2, clave);
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
 
-            ResultSet rs = ps.executeQuery();
+        try {
+            conn = DatabaseConfig.getInstance().obtenerConexion();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, usuario);
+            stmt.setString(2, clave);
 
-            return rs.next(); // true si existe
+            rs = stmt.executeQuery();
+
+            return rs.next();
 
         } catch (Exception e) {
             System.err.println("Error login admin: " + e.getMessage());
