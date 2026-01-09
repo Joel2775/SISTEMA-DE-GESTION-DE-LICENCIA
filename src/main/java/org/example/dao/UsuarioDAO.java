@@ -204,8 +204,8 @@ public class UsuarioDAO implements IUsuarioService, Persistible<Usuario> {
     }
 
     @Override
-    public boolean validarLoginAnalista(String usuario, String clave) {
-        String sql = " SELECT id FROM public.usuarios WHERE usuario = ? AND clave = ? AND estado = true ";
+    public boolean login(String usuario, String clave) {
+        String sql = " SELECT id FROM public.admins WHERE usuario = ? AND clave = ? AND estado = true ";
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -249,5 +249,22 @@ public class UsuarioDAO implements IUsuarioService, Persistible<Usuario> {
         usuario.setEstado(rs.getBoolean("estado"));
 
         return usuario;
+    }
+
+    public void eliminar(String cedula) throws BaseDatosException {
+        String sql = "DELETE FROM usuarios WHERE cedula = ?";
+        try (Connection conn = DatabaseConfig.getInstance().obtenerConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, cedula);
+            int filas = ps.executeUpdate();
+
+            if (filas == 0) {
+                throw new BaseDatosException("No se eliminó ningún usuario, cédula no encontrada");
+            }
+
+        } catch (SQLException e) {
+            throw new BaseDatosException("Error al eliminar usuario", e);
+        }
     }
 }
