@@ -1,6 +1,5 @@
 package org.example.controller;
 
-
 import org.example.model.entities.Usuario;
 import org.example.model.exceptions.UsuarioException;
 import org.example.service.UsuarioService;
@@ -115,6 +114,8 @@ public class UsuarioController {
     public List<Usuario> obtenerTodosUsuarios() throws UsuarioException {
         return usuarioService.obtenerTodosUsuarios();
     }
+
+    public void eliminarUsuario(Usuario usuario) throws UsuarioException {
+        usuarioService.eliminarUsuario(usuario);
+    }
 }
-
-
