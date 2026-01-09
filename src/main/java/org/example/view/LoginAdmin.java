@@ -77,6 +77,25 @@ public class LoginAdmin extends JFrame {
         });
     }
 
+    private void bloquearLogin() {
+
+        textUsuario.setEnabled(false);
+        passwordField.setEnabled(false);
+        btnAceptar.setEnabled(false);
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Has superado el número máximo de intentos.\nLogin bloqueado.",
+                "Acceso bloqueado",
+                JOptionPane.WARNING_MESSAGE
+        );
+    }
+
+    public void limpiar() {
+        textUsuario.setText("");
+        passwordField.setText("");
+    }
+
     private  void inicializarLoginAdmin() {
         LoginAdmin = new JPanel();
         LoginAdmin.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -127,25 +146,5 @@ public class LoginAdmin extends JFrame {
         LoginAdmin.add(btnSalir);
 
     }
-
-    private void bloquearLogin() {
-
-        textUsuario.setEnabled(false);
-        passwordField.setEnabled(false);
-        btnAceptar.setEnabled(false);
-
-        JOptionPane.showMessageDialog(
-                this,
-                "Has superado el número máximo de intentos.\nLogin bloqueado.",
-                "Acceso bloqueado",
-                JOptionPane.WARNING_MESSAGE
-        );
-    }
-
-    public void limpiar() {
-        textUsuario.setText("");
-        passwordField.setText("");
-    }
-
 
 }

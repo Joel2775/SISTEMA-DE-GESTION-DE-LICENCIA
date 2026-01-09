@@ -33,11 +33,9 @@ public class Main {
                 return;
             }
 
-//            // Iniciar ventana principal
-//            Sistema sistema = new Sistema();
-//            sistema.setVisible(true);
-            gestorUsuariosActualizar gestorUsuariosActualizar = new gestorUsuariosActualizar(new UsuarioController());
-            gestorUsuariosActualizar.setVisible(true);
+            // Iniciar ventana principal
+            Sistema sistema = new Sistema();
+            sistema.setVisible(true);
         });
     }
 
@@ -49,10 +47,10 @@ public class Main {
                 null,
                 "SISTEMA DE LICENCIAS DE CONDUCIR - ECUADOR\n\n" +
                         "Agencia Nacional de Tránsito\n" +
-                        "Versión 1.0\n\n" +
+                        "Versión 2.0\n\n" +
                         "Desarrollado con:\n" +
                         "- Java 21\n" +
-                        "- MySQL Database\n" +
+                        "- PostgresSQL - Supabase\n" +
                         "- Arquitectura MVC\n" +
                         "- iText PDF\n\n" +
                         "Iniciando sistema...",
@@ -66,14 +64,11 @@ public class Main {
      */
     private static void mostrarErrorConexion() {
         String mensaje = "ERROR DE CONEXIÓN A BASE DE DATOS\n\n" +
-                "No se pudo establecer conexión con MySQL.\n\n" +
+                "No se pudo establecer conexión con supabase.\n\n" +
                 "Verifique que:\n" +
-                "1. MySQL Server esté ejecutándose\n" +
+                "1. la base de datos 'sistema_Usuarios' exista\n" +
                 "2. La base de datos 'sistema_licencias' exista\n" +
-                "3. Las credenciales sean correctas (usuario: root, password: root)\n" +
-                "4. El servidor esté en localhost:3306\n\n" +
-                "Para crear la base de datos, ejecute el script:\n" +
-                "src/main/resources/schema.sql\n\n" +
+                "3. Las credenciales sean correctas ya acorde a los datos del Postgres\n" +
                 "La aplicación se cerrará.";
 
         JOptionPane.showMessageDialog(

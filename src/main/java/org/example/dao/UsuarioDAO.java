@@ -204,8 +204,8 @@ public class UsuarioDAO implements IUsuarioService, Persistible<Usuario> {
     }
 
     @Override
-    public boolean login(String usuario, String clave) {
-        String sql = " SELECT id FROM public.admins WHERE usuario = ? AND clave = ? AND estado = true ";
+    public boolean validarLoginAnalista(String usuario, String clave) {
+        String sql = " SELECT id FROM public.usuarios WHERE usuario = ? AND clave = ? AND estado = true ";
 
         Connection conn = null;
         PreparedStatement stmt = null;

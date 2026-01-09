@@ -1,7 +1,6 @@
 package org.example.view;
 
-import org.example.dao.AdminDAO;
-import org.example.model.entities.Admin;
+import org.example.dao.UsuarioDAO;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -19,6 +18,9 @@ public class LoginAnalista extends JFrame{
     private JLabel lblUsuario;
     private JLabel lblTitulo;
 
+    private int intentosFallidos = 0;
+    private final int MAX_INTENTOS = 3;
+
     public LoginAnalista() throws HeadlessException {
 
         inicializarLoginAnalista();
@@ -31,8 +33,35 @@ public class LoginAnalista extends JFrame{
         btnAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String usuario = textUsuario.getText().trim();
+                String password = new String(passwordField.getPassword());
 
-                //logica para la ventana de analista
+                UsuarioDAO usuario1 = new UsuarioDAO();
+
+                if (usuario1.validarLoginAnalista(usuario, password)) {
+                    JOptionPane.showMessageDialog(LoginAnalista.this,"Bienvenido Administrador");
+
+                    GestorUsuarios gestorUsuarios = new GestorUsuarios();
+                    gestorUsuarios.setVisible(true);
+
+                    limpiar();
+                } else {
+                    intentosFallidos++;
+
+                    if (intentosFallidos >= MAX_INTENTOS) {
+                        bloquearLogin();
+                        limpiar();
+                    } else {
+                        JOptionPane.showMessageDialog(
+                                LoginAnalista.this,
+                                "Credenciales incorrectas.\nIntentos restantes: "
+                                        + (MAX_INTENTOS - intentosFallidos),
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE
+                        );
+                        limpiar();
+                    }
+                }
             }
         });
 
@@ -42,6 +71,25 @@ public class LoginAnalista extends JFrame{
                 dispose();
             }
         });
+    }
+
+    private void bloquearLogin() {
+
+        textUsuario.setEnabled(false);
+        passwordField.setEnabled(false);
+        btnAceptar.setEnabled(false);
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Has superado el número máximo de intentos.\nLogin bloqueado.",
+                "Acceso bloqueado",
+                JOptionPane.WARNING_MESSAGE
+        );
+    }
+
+    public void limpiar() {
+        textUsuario.setText("");
+        passwordField.setText("");
     }
 
     public  void inicializarLoginAnalista(){

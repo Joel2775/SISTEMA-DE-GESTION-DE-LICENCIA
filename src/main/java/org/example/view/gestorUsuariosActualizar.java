@@ -21,6 +21,7 @@ public class gestorUsuariosActualizar extends JFrame {
     private JPanel panelBotones;
 
     private JTextField txtCedulaBusqueda;
+    private JButton btnBuscar;
 
     private JTextArea txtInfo;
 
@@ -33,7 +34,6 @@ public class gestorUsuariosActualizar extends JFrame {
 
     private JButton btnActualizar;
     private JButton btnCerrar;
-    private JButton btnBuscar;
 
     public gestorUsuariosActualizar(UsuarioController controller) {
         this.controller = controller;
@@ -48,9 +48,9 @@ public class gestorUsuariosActualizar extends JFrame {
     }
 
     private void inicializarActualizar() {
+
         panelPrincipal = new JPanel();
         panelPrincipal.setLayout(null);
-
         panelBusqueda = new JPanel();
         panelBusqueda.setLayout(null);
         panelBusqueda.setBorder(new TitledBorder("Búsqueda"));
@@ -94,6 +94,7 @@ public class gestorUsuariosActualizar extends JFrame {
 
         txtCedula = new JTextField();
         txtCedula.setBounds(120, 30, 250, 25);
+        txtCedula.setEnabled(false);
         panelFormulario.add(txtCedula);
 
 
@@ -151,6 +152,7 @@ public class gestorUsuariosActualizar extends JFrame {
         panelBotones.add(btnCerrar);
     }
 
+
     private void buscarUsuario() {
         try {
             usuarioActual = controller.buscarUsuarioPorCedula(txtCedulaBusqueda.getText().trim());
@@ -188,7 +190,6 @@ public class gestorUsuariosActualizar extends JFrame {
                 return;
             }
 
-            usuarioActual.setCedula(txtCedula.getText().trim());
             usuarioActual.setNombres(txtNombres.getText().trim());
             usuarioActual.setApellidos(txtApellidos.getText().trim());
             usuarioActual.setUsuario(txtUsuario.getText().trim());
