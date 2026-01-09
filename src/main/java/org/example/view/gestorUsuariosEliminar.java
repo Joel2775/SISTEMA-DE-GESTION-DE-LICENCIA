@@ -1,5 +1,9 @@
 package org.example.view;
 
+import org.example.controller.UsuarioController;
+import org.example.model.entities.Usuario;
+import org.example.model.exceptions.UsuarioException;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.event.ActionEvent;
@@ -21,8 +25,11 @@ public class gestorUsuariosEliminar extends JFrame {
     private JButton btnEliminar;
     private JButton btnCerrar;
 
-    public gestorUsuariosEliminar() {
+    private Usuario usuarioActual;
+    private final UsuarioController controller;
 
+    public gestorUsuariosEliminar(UsuarioController controller) {
+        this.controller = controller;
         inicializarEliminar();
 
         setTitle("Eliminar Usuarios");
@@ -89,15 +96,14 @@ public class gestorUsuariosEliminar extends JFrame {
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Lógica de búsqueda
-                txtInfo.setText("");
+                buscarUsuario();
             }
         });
 
         btnEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Lógica de eliminación
+                eliminarUsuario();
             }
         });
 
@@ -108,4 +114,55 @@ public class gestorUsuariosEliminar extends JFrame {
             }
         });
     }
+
+    private void buscarUsuario() {
+        try {
+            usuarioActual = controller.buscarUsuarioPorCedula(txtCedula.getText().trim());
+            if (usuarioActual != null) {
+                txtInfo.setText(String.format(
+                        "Cédula: %s\nNombres: %s\nApellidos: %s\nUsuario: %s\nClave: %s\nEstado: %s",
+                        usuarioActual.getCedula(),
+                        usuarioActual.getNombres(),
+                        usuarioActual.getApellidos(),
+                        usuarioActual.getUsuario(),
+                        usuarioActual.getClave(),
+                        usuarioActual.isEstado() ? "Activo" : "Inactivo"
+                ));
+
+            } else {
+                controller.mostrarError("Usuario no encontrado");
+                txtInfo.setText("");
+            }
+        } catch (UsuarioException ex) {
+            controller.mostrarError("Error: " + ex.getMessage());
+        }
+    }
+
+    private void eliminarUsuario() {
+        try {
+            if (usuarioActual == null) {
+                controller.mostrarError("Primero busque un usuario");
+                return;
+            }
+
+            boolean confirmar = controller.confirmar(
+                    "¿Está seguro de eliminar al usuario con cédula: " + usuarioActual.getCedula() + "?"
+            );
+
+            if (!confirmar) {
+                return;
+            }
+
+            controller.eliminarUsuario(usuarioActual);
+
+            JOptionPane.showMessageDialog(this,
+                    "Usuario Eliminado correctamente",
+                    "Éxito",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (UsuarioException ex) {
+            controller.mostrarError(ex.getMessage());
+        }
+    }
+
 }
