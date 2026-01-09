@@ -1,5 +1,9 @@
 package org.example.view;
 
+import org.example.controller.UsuarioController;
+import org.example.model.entities.Usuario;
+import org.example.model.exceptions.UsuarioException;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.event.ActionEvent;
@@ -21,8 +25,11 @@ public class gestorUsuariosMostrar extends JFrame {
     private JButton btnGenerarPDF;
     private JButton btnCerrar;
 
-    public gestorUsuariosMostrar() {
+    private Usuario usuarioActual;
+    private final UsuarioController controller;
 
+    public gestorUsuariosMostrar(UsuarioController controller) {
+        this.controller = controller;
         inicializarMostrar();
 
         setTitle("Mostrar Información de Usuario");
@@ -90,7 +97,7 @@ public class gestorUsuariosMostrar extends JFrame {
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Logica
+                buscarUsuario();
             }
         });
 
@@ -107,5 +114,28 @@ public class gestorUsuariosMostrar extends JFrame {
                 dispose();
             }
         });
+    }
+
+    private void buscarUsuario() {
+        try {
+            usuarioActual = controller.buscarUsuarioPorCedula(txtCedula.getText().trim());
+            if (usuarioActual != null) {
+                txtInfo.setText(String.format(
+                        "Cédula: %s\nNombres: %s\nApellidos: %s\nUsuario: %s\nClave: %s\nEstado: %s",
+                        usuarioActual.getCedula(),
+                        usuarioActual.getNombres(),
+                        usuarioActual.getApellidos(),
+                        usuarioActual.getUsuario(),
+                        usuarioActual.getClave(),
+                        usuarioActual.isEstado() ? "Activo" : "Inactivo"
+                ));
+
+            } else {
+                controller.mostrarError("Usuario no encontrado");
+                txtInfo.setText("");
+            }
+        } catch (UsuarioException ex) {
+            controller.mostrarError("Error: " + ex.getMessage());
+        }
     }
 }
