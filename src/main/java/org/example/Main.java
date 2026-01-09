@@ -1,7 +1,9 @@
 package org.example;
 
 import org.example.config.DatabaseConfig;
+import org.example.controller.UsuarioController;
 import org.example.view.Sistema;
+import org.example.view.gestorUsuariosActualizar;
 
 import javax.swing.*;
 
@@ -31,9 +33,11 @@ public class Main {
                 return;
             }
 
-            // Iniciar ventana principal
-            Sistema sistema = new Sistema();
-            sistema.setVisible(true);
+//            // Iniciar ventana principal
+//            Sistema sistema = new Sistema();
+//            sistema.setVisible(true);
+            gestorUsuariosActualizar gestorUsuariosActualizar = new gestorUsuariosActualizar(new UsuarioController());
+            gestorUsuariosActualizar.setVisible(true);
         });
     }
 

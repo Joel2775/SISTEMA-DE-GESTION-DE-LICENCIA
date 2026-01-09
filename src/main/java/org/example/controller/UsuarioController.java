@@ -2,7 +2,7 @@ package org.example.controller;
 
 
 import org.example.model.entities.Usuario;
-import org.example.model.exceptions.LicenciaException;
+import org.example.model.exceptions.UsuarioException;
 import org.example.service.UsuarioService;
 
 import javax.swing.*;
@@ -19,32 +19,32 @@ import java.util.List;
 public class UsuarioController {
 
     // Servicio de negocio (capa de modelo)
-    private final UsuarioService licenciaService;
+    private final UsuarioService usuarioService;
 
     /**
      * Constructor que inicializa el servicio
      */
     public UsuarioController() {
-        this.licenciaService = new UsuarioService();
+        this.usuarioService = new UsuarioService();
     }
 
     /**
      * Registra un nuevo usuario en el sistema
      * @param usuario Usuario a registrar
      * @return ID del usuario registrado
-     * @throws LicenciaException Si hay errores de validación o persistencia
+     * @throws UsuarioException Si hay errores de validación o persistencia
      */
-    public Long registrarUsuario(Usuario usuario) throws LicenciaException {
-        return licenciaService.registrarUsuario(usuario);
+    public Long registrarUsuario(Usuario usuario) throws UsuarioException {
+        return usuarioService.registrarUsuario(usuario);
     }
 
     /**
      * Actualiza los datos de un usuario
      * @param usuario Usuario con datos actualizados
-     * @throws LicenciaException Si hay errores
+     * @throws UsuarioException Si hay errores
      */
-    public void actualizarUsuario(Usuario usuario) throws LicenciaException {
-        licenciaService.actualizarUsuario(usuario);
+    public void actualizarUsuario(Usuario usuario) throws UsuarioException {
+        usuarioService.actualizarUsuario(usuario);
     }
 
 
@@ -53,20 +53,20 @@ public class UsuarioController {
      * Busca un usuario por cédula
      * @param cedula Número de cédula
      * @return Usuario encontrado o null
-     * @throws LicenciaException Si hay errores
+     * @throws UsuarioException Si hay errores
      */
-    public Usuario buscarUsuarioPorCedula(String cedula) throws LicenciaException {
-        return licenciaService.buscarUsuarioPorCedula(cedula);
+    public Usuario buscarUsuarioPorCedula(String cedula) throws UsuarioException {
+        return usuarioService.buscarUsuarioPorCedula(cedula);
     }
 
     /**
      * Busca un usuario por ID
      * @param id ID del usuario
      * @return Usuario encontrado o null
-     * @throws LicenciaException Si hay errores
+     * @throws UsuarioException Si hay errores
      */
-    public Usuario buscarUsuarioPorId(Long id) throws LicenciaException {
-        return licenciaService.buscarUsuarioPorId(id);
+    public Usuario buscarUsuarioPorId(Long id) throws UsuarioException {
+        return usuarioService.buscarUsuarioPorId(id);
     }
 
 
@@ -110,10 +110,10 @@ public class UsuarioController {
     /**
      * Obtiene todos los usuarios
      * @return Lista de usuarios
-     * @throws LicenciaException Si hay errores
+     * @throws UsuarioException Si hay errores
      */
-    public List<Usuario> obtenerTodosUsuarios() throws LicenciaException {
-        return licenciaService.obtenerTodosUsuarios();
+    public List<Usuario> obtenerTodosUsuarios() throws UsuarioException {
+        return usuarioService.obtenerTodosUsuarios();
     }
 }
 

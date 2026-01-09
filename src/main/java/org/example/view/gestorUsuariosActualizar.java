@@ -1,11 +1,18 @@
 package org.example.view;
 
+import org.example.controller.UsuarioController;
+import org.example.model.entities.Usuario;
+import org.example.model.exceptions.UsuarioException;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class gestorUsuariosActualizar extends JFrame {
+
+    private final UsuarioController controller;
+    private Usuario usuarioActual;
 
     private JPanel panelPrincipal;
     private JPanel panelBusqueda;
@@ -14,23 +21,22 @@ public class gestorUsuariosActualizar extends JFrame {
     private JPanel panelBotones;
 
     private JTextField txtCedulaBusqueda;
-    private JButton btnBuscar;
 
     private JTextArea txtInfo;
 
-    private JTextField txtCedulaBuscar;
+    private JTextField txtCedula;
     private JTextField txtNombres;
     private JTextField txtApellidos;
+    private JTextField txtUsuario;
+    private JTextField txtContrasena;
+    private JComboBox<String> cmbEstado;
 
     private JButton btnActualizar;
     private JButton btnCerrar;
-    private JTextField txtCedula;
-    private JTextField txtUsuario;
-    private JTextField txtContrasena;
-    private JComboBox cmbEstado;
+    private JButton btnBuscar;
 
-    public gestorUsuariosActualizar() {
-
+    public gestorUsuariosActualizar(UsuarioController controller) {
+        this.controller = controller;
         inicializarActualizar();
         setTitle("Actualizar Datos de Usuarios");
         setContentPane(panelPrincipal);
@@ -85,9 +91,10 @@ public class gestorUsuariosActualizar extends JFrame {
         JLabel lblCedula = new JLabel("Cédula:");
         lblCedula.setBounds(20, 30, 100, 25);
         panelFormulario.add(lblCedula);
-        txtCedulaBuscar = new JTextField();
-        txtCedulaBuscar.setBounds(120, 30, 250, 25);
-        panelFormulario.add(txtCedulaBuscar);
+
+        txtCedula = new JTextField();
+        txtCedula.setBounds(120, 30, 250, 25);
+        panelFormulario.add(txtCedula);
 
 
         JLabel lblNombres = new JLabel("Nombres:");
@@ -130,7 +137,6 @@ public class gestorUsuariosActualizar extends JFrame {
         panelFormulario.add(txtContrasena);
 
 
-
         panelBotones = new JPanel();
         panelBotones.setLayout(null);
         panelBotones.setBounds(10, 550, 860, 50);
@@ -145,20 +151,75 @@ public class gestorUsuariosActualizar extends JFrame {
         panelBotones.add(btnCerrar);
     }
 
+    private void buscarUsuario() {
+        try {
+            usuarioActual = controller.buscarUsuarioPorCedula(txtCedulaBusqueda.getText().trim());
+            if (usuarioActual != null) {
+                txtInfo.setText(String.format(
+                        "Cédula: %s\nNombres: %s\nApellidos: %s\nUsuario: %s\nClave: %s\nEstado: %s",
+                        usuarioActual.getCedula(),
+                        usuarioActual.getNombres(),
+                        usuarioActual.getApellidos(),
+                        usuarioActual.getUsuario(),
+                        usuarioActual.getClave(),
+                        usuarioActual.isEstado() ? "Activo" : "Inactivo"
+                ));
+
+                txtCedula.setText(usuarioActual.getCedula());
+                txtNombres.setText(usuarioActual.getNombres());
+                txtApellidos.setText(usuarioActual.getApellidos());
+                txtUsuario.setText(usuarioActual.getUsuario());
+                txtContrasena.setText(usuarioActual.getClave());
+                cmbEstado.setSelectedIndex(usuarioActual.isEstado() ? 0 : 1);
+
+            } else {
+                controller.mostrarError("Usuario no encontrado");
+                txtInfo.setText("");
+            }
+        } catch (UsuarioException ex) {
+            controller.mostrarError("Error: " + ex.getMessage());
+        }
+    }
+
+    private void actualizarUsuario() {
+        try {
+            if (usuarioActual == null) {
+                controller.mostrarError("Primero busque un usuario");
+                return;
+            }
+
+            usuarioActual.setCedula(txtCedula.getText().trim());
+            usuarioActual.setNombres(txtNombres.getText().trim());
+            usuarioActual.setApellidos(txtApellidos.getText().trim());
+            usuarioActual.setUsuario(txtUsuario.getText().trim());
+            usuarioActual.setClave(txtContrasena.getText().trim());
+            usuarioActual.setEstado(cmbEstado.getSelectedIndex() == 0);
+
+            controller.actualizarUsuario(usuarioActual);
+
+            JOptionPane.showMessageDialog(this,
+                    "Usuario actualizado correctamente",
+                    "Éxito",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (UsuarioException ex) {
+            controller.mostrarError(ex.getMessage());
+        }
+    }
 
     private void eventos() {
 
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                txtInfo.setText("");
+                buscarUsuario();
             }
         });
 
         btnActualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                actualizarUsuario();
             }
         });
 
@@ -169,4 +230,5 @@ public class gestorUsuariosActualizar extends JFrame {
             }
         });
     }
+
 }

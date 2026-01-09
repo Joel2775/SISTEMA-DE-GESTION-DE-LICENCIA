@@ -45,7 +45,7 @@ public class GestorUsuarios extends JFrame{
         btnActualizar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gestorUsuariosActualizar mostrar = new gestorUsuariosActualizar();
+                gestorUsuariosActualizar mostrar = new gestorUsuariosActualizar(controller);
                 mostrar.setVisible(true);
                 // Lógica para Actualizar un usuario
             }

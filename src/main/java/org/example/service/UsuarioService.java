@@ -5,7 +5,7 @@ import org.example.dao.UsuarioDAO;
 import org.example.model.entities.Usuario;
 import org.example.model.exceptions.BaseDatosException;
 import org.example.model.exceptions.DocumentoInvalidoException;
-import org.example.model.exceptions.LicenciaException;
+import org.example.model.exceptions.UsuarioException;
 
 import java.util.List;
 
@@ -32,9 +32,9 @@ public class UsuarioService {
      * Registra un nuevo usuario en el sistema
      * @param usuario Usuario a registrar
      * @return ID del usuario registrado
-     * @throws LicenciaException Si hay errores de validación o persistencia
+     * @throws UsuarioException Si hay errores de validación o persistencia
      */
-    public Long registrarUsuario(Usuario usuario) throws LicenciaException {
+    public Long registrarUsuario(Usuario usuario) throws UsuarioException {
         try {
             // Validar datos del usuario
             usuario.validar();
@@ -56,16 +56,16 @@ public class UsuarioService {
         } catch (DocumentoInvalidoException e) {
             throw e; // Reenviar excepción de validación
         } catch (BaseDatosException e) {
-            throw new LicenciaException("Error al registrar usuario", e);
+            throw new UsuarioException("Error al registrar usuario", e);
         }
     }
 
     /**
      * Actualiza los datos de un usuario existente
      * @param usuario Usuario con datos actualizados
-     * @throws LicenciaException Si hay errores
+     * @throws UsuarioException Si hay errores
      */
-    public void actualizarUsuario(Usuario usuario) throws LicenciaException {
+    public void actualizarUsuario(Usuario usuario) throws UsuarioException {
         try {
             // Validar datos
             usuario.validar();
@@ -79,7 +79,7 @@ public class UsuarioService {
             usuarioDAO.guardar(usuario);
 
         } catch (BaseDatosException e) {
-            throw new LicenciaException("Error al actualizar usuario", e);
+            throw new UsuarioException("Error al actualizar usuario", e);
         }
     }
 
@@ -88,13 +88,13 @@ public class UsuarioService {
      * Busca un usuario por cédula
      * @param cedula Número de cédula
      * @return Usuario encontrado o null
-     * @throws LicenciaException Si hay errores
+     * @throws UsuarioException Si hay errores
      */
-    public Usuario buscarUsuarioPorCedula(String cedula) throws LicenciaException {
+    public Usuario buscarUsuarioPorCedula(String cedula) throws UsuarioException {
         try {
             return usuarioDAO.buscarPorCedula(cedula);
         } catch (BaseDatosException e) {
-            throw new LicenciaException("Error al buscar usuario", e);
+            throw new UsuarioException("Error al buscar usuario", e);
         }
     }
 
@@ -102,13 +102,13 @@ public class UsuarioService {
      * Busca un usuario por ID
      * @param id ID del usuario
      * @return Usuario encontrado o null
-     * @throws LicenciaException Si hay errores
+     * @throws UsuarioException Si hay errores
      */
-    public Usuario buscarUsuarioPorId(Long id) throws LicenciaException {
+    public Usuario buscarUsuarioPorId(Long id) throws UsuarioException {
         try {
             return usuarioDAO.buscarPorId(id);
         } catch (BaseDatosException e) {
-            throw new LicenciaException("Error al buscar usuario", e);
+            throw new UsuarioException("Error al buscar usuario", e);
         }
     }
 
@@ -116,13 +116,13 @@ public class UsuarioService {
     /**
      * Obtiene todos los usuarios registrados
      * @return Lista de usuarios
-     * @throws LicenciaException Si hay errores
+     * @throws UsuarioException Si hay errores
      */
-    public List<Usuario> obtenerTodosUsuarios() throws LicenciaException {
+    public List<Usuario> obtenerTodosUsuarios() throws UsuarioException {
         try {
             return usuarioDAO.obtenerTodos();
         } catch (BaseDatosException e) {
-            throw new LicenciaException("Error al obtener usuarios", e);
+            throw new UsuarioException("Error al obtener usuarios", e);
         }
     }
 }

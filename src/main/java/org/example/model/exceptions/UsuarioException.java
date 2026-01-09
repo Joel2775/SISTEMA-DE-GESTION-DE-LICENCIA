@@ -7,14 +7,14 @@ package org.example.model.exceptions;
  * @author Sistema Licencias Ecuador
  * @version 1.0
  */
-public class LicenciaException extends Exception {
+public class UsuarioException extends Exception {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * Constructor sin parámetros
      */
-    public LicenciaException() {
+    public UsuarioException() {
         super();
     }
 
@@ -22,7 +22,7 @@ public class LicenciaException extends Exception {
      * Constructor con mensaje de error
      * @param mensaje Descripción del error
      */
-    public LicenciaException(String mensaje) {
+    public UsuarioException(String mensaje) {
         super(mensaje);
     }
 
@@ -31,7 +31,7 @@ public class LicenciaException extends Exception {
      * @param mensaje Descripción del error
      * @param causa Excepción que causó el error
      */
-    public LicenciaException(String mensaje, Throwable causa) {
+    public UsuarioException(String mensaje, Throwable causa) {
         super(mensaje, causa);
     }
 
@@ -39,7 +39,7 @@ public class LicenciaException extends Exception {
      * Constructor con causa
      * @param causa Excepción que causó el error
      */
-    public LicenciaException(Throwable causa) {
+    public UsuarioException(Throwable causa) {
         super(causa);
     }
 }

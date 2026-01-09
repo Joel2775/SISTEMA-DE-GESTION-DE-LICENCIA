@@ -7,7 +7,7 @@ package org.example.model.exceptions;
  * @author Sistema Licencias Ecuador
  * @version 1.0
  */
-public class BaseDatosException extends LicenciaException {
+public class BaseDatosException extends UsuarioException {
 
     private static final long serialVersionUID = 1L;
 

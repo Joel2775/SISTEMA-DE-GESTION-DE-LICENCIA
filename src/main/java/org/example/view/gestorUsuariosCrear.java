@@ -2,7 +2,7 @@ package org.example.view;
 
 import org.example.controller.UsuarioController;
 import org.example.model.entities.Usuario;
-import org.example.model.exceptions.LicenciaException;
+import org.example.model.exceptions.UsuarioException;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -19,19 +19,21 @@ public class gestorUsuariosCrear extends JFrame {
     private JPanel panelPrincipal;
     private JPanel panelFormulario;
     private JPanel panelBotones;
+
     private JTextField txtCedula;
     private JTextField txtNombres;
     private JTextField txtApellidos;
-    private JTable tablaUsuarios;
-    private JScrollPane scrollTabla;
-    private JButton btnGuardar;
-    private JButton btnLimpiar;
-    private JButton btnActualizar;
-    private JButton btnCerrar;
     private JTextField txtUsuario;
     private JTextField txtContrasena;
     private JComboBox<String> cmbEstado;
 
+    private JTable tablaUsuarios;
+    private JScrollPane scrollTabla;
+
+    private JButton btnGuardar;
+    private JButton btnLimpiar;
+    private JButton btnActualizar;
+    private JButton btnCerrar;
 
     public gestorUsuariosCrear(UsuarioController controller) {
         this.controller = controller;
@@ -111,7 +113,7 @@ public class gestorUsuariosCrear extends JFrame {
             limpiarFormulario();
             cargarUsuarios();
 
-        } catch (LicenciaException ex) {
+        } catch (UsuarioException ex) {
             controller.mostrarError("Error al guardar usuario: " + ex.getMessage());
         } catch (Exception ex) {
             controller.mostrarError("Error: " + ex.getMessage());
@@ -138,7 +140,7 @@ public class gestorUsuariosCrear extends JFrame {
                 };
                 modeloTabla.addRow(fila);
             }
-        } catch (LicenciaException ex) {
+        } catch (UsuarioException ex) {
             controller.mostrarError("Error al cargar usuarios: " + ex.getMessage());
         }
     }

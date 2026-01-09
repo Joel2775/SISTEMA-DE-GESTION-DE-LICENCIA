@@ -7,7 +7,7 @@ package org.example.model.exceptions;
  * @author Sistema Licencias Ecuador
  * @version 1.0
  */
-public class DocumentoInvalidoException extends LicenciaException {
+public class DocumentoInvalidoException extends UsuarioException {
 
     private static final long serialVersionUID = 1L;
 
