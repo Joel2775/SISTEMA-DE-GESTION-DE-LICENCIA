@@ -125,5 +125,31 @@ public class UsuarioService {
             throw new UsuarioException("Error al obtener usuarios", e);
         }
     }
-}
 
+    /**
+     * Elimina un usuario del sistema
+     * @param usuario Usuario a eliminar
+     * @throws UsuarioException Si hay errores de validación o persistencia
+     */
+
+    public void eliminarUsuario(Usuario usuario) throws UsuarioException {
+        try {
+            if (usuario == null || usuario.getCedula() == null || usuario.getCedula().trim().isEmpty()) {
+                throw new DocumentoInvalidoException("La cédula del usuario es obligatoria para eliminar");
+            }
+
+            Usuario usuarioExistente = usuarioDAO.buscarPorCedula(usuario.getCedula());
+            if (usuarioExistente == null) {
+                throw new DocumentoInvalidoException(
+                        "No existe un usuario registrado con la cédula: " + usuario.getCedula()
+                );
+            }
+
+            usuarioDAO.eliminar(usuarioExistente.getCedula());
+        } catch (DocumentoInvalidoException e) {
+            throw e;
+        } catch (BaseDatosException e) {
+            throw new UsuarioException("Error al eliminar usuario", e);
+        }
+    }
+}
